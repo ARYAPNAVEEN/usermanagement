@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+    <div class="container profile">
+        <div class="container maindiv mt-5">
+            <h1>Welcome</h1>
+            
+            {% if user.profile.image %}
+            <img src="{{ user.profile.image.url }}" alt="Profile Image">
+            {% else %}
+            <img src="{% static 'img/im1.png' %}" alt="Default Profile Image">
+            {% endif %}
+            <br> <br>
+            <span class="label mt-5" for="">Name:</span>
+            <span>{{user.username}}</span> <br> <br>
+            <span class="label" for="" > Contact</span>
+            <span>{{user.profile.phone}} </user></h4> <br> <br>
+            <span span class="label" for="">Email:</span>
+            <span>{{user.email}}</span> <br> <br>
+            <div class="container d-flex">
+                <a href="{% url 'edit' %}"><button>Edit</button></a>
+                <a href="{% url 'logout' %}"><button>Logout</button></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

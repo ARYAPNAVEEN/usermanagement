@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} Login {% endblock %}
+{% block content %}
+
+
+
+    <div class="container contants"> 
+        <div class="container maincontants mt-5">
+            <h1>Login form</h1>
+            {% if messages %}
+                 {% for message in messages %}
+                     <p>{{message}}</p>
+                 {% endfor %}
+            {% endif %}
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <label for="">Username:</label>
+                <input type="text" name="username"> <br> <br>
+                <label for="">Password:</label>
+                <input type="password" name="password"> <br> <br>
+                <div class="container btn d-flex">
+                    <button type="submit">Login</button> 
+                    <a href="{% url 'register' %}">Register</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

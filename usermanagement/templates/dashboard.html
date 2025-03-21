@@ -1,0 +1,46 @@
+ {% extends "base.html" %}
+ {% load static %}
+ {% block title %}Dashboard{% endblock  %}
+ {% block content%}
+    
+    <div class="container dashboard">
+        <div class="container maindiv">
+            <h1 >Dashboard</h1>
+            <table>
+                <tr>
+                    <form method="POST" action="{% url 'search' %}">
+                        {% csrf_token %}
+                        <input type="text" name="name" placeholder="Search users..." required>
+                        <button type="submit" id="search">search</button>
+                    </form>
+                    <a href="{% url 'logout' %}"><button id="logout">Logout</button></a>
+
+                </tr>
+                <tr>
+                    <th>Id</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                {% for user in users %}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.profile.phone}}</td>
+                    <td><a href="{% url 'get_user' user.id %}"><button>update</button></a></td>
+                    <td><a href="{% url 'delete' user.id %}"><button>Delete</button></a></td>
+                    
+                </tr>
+                {% endfor %}
+              
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+

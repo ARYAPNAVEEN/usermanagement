@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} Register {% endblock %}
+{% block content%}
+    <div class="conainer contant">
+        <div class="container maincnt mt-5">
+           <h1>Update</h1>
+           {% if messages %}
+              {% for message in messages %}
+                <p> {{message}}</p>
+              {% endfor %}
+            {% endif %} 
+            <form action="{% url 'update' user.id %}" method="POST"  enctype="multipart/form-data">
+              {% csrf_token %}
+              <label class="label mt-5" for="" >Username:</label>
+              <input class="input" type="text" name="uname" value="{{user.username}}" disabled> <br> <br>
+              <label class="label" for="">Contact</label>
+              <input class="input" type="text" name="phone" id="" value="{{user.profile.phone}}"> <br> <br>
+              <label class="label" for="">Email:</label>
+              <input class="input" type="email" name="email" value="{{user.email}}"> <br> <br>
+              <label for="profile_picture">Profile Picture:</label>
+              <input type="file" name="profile_picture"> <br> <br>
+              <button class="button" type="submit">Submit</button>
+   
+            </form>
+           
+        </div>
+    </div>
+{% endblock %}
+
+  

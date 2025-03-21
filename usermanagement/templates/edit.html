@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}Edit {% endblock %}
+{%block content %}
+
+    <div class="container edit">
+        <div class="continer maindiv mt-5">
+            <h1>Edit Profile</h1>
+            <form action="{% url 'edit' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="username">Username:</label>
+                <input type="text" name="username" value="{{ user.username }}" required> <br> <br>
+                
+                <label for="email">Email:</label>
+                <input type="email" name="email" value="{{ user.email }}" required> <br> <br>
+                
+                <label for="phone">Contact:</label>
+                <input type="text" name="phone" value="{{ user.profile.phone }}" required> <br> <br>
+
+                <!-- <label for="phone">Password:</label>
+                <input type="text" name="password" value="" required> <br> <br> -->
+
+                <label for="profile_picture">Profile Picture:</label>
+                <input type="file" name="profile_picture"> <br> <br>
+                
+                <button type="submit">Submit</button>
+            </form>
+            
+        </div>
+    </div>
+    {% endblock %}
